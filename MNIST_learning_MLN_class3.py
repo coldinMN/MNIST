@@ -162,7 +162,7 @@ class OutputLayer:
         _output_exp = create_exp(y_train, batch_size)
         return output, _output_exp
 
-    def backprop(self,next_activation, loss, layer_weights, layer_bias):
+    def backprop(self, next_activation, loss, layer_weights, layer_bias):
         gradient_output_weights = np.dot(next_activation.T, loss)
         gradient_output_bias = np.sum(loss)
         error_next = np.dot(loss, layer_weights.T) * relu_back(next_activation)
@@ -183,13 +183,13 @@ class OutputLayer:
 
 # import and organize training and test data
 
-# x_train = get_MNIST_data("mnist_train_100.csv")
-# x_test = get_MNIST_data("mnist_test_10.csv")
+x_train = get_MNIST_data("mnist_train_100.csv")
+x_test = get_MNIST_data("mnist_test_10.csv")
 
-x_train = get_MNIST_data("mnist_train_5000.csv")
+#x_train = get_MNIST_data("mnist_train_5000.csv")
 # x_train = get_MNIST_data("mnist_train_20000.csv")
 # x_train = get_MNIST_data("mnist_train.csv")
-x_test = get_MNIST_data("mnist_test.csv")
+#x_test = get_MNIST_data("mnist_test.csv")
 
 y_train, x_train = extract_labels(x_train)
 y_test, x_test = extract_labels(x_test)
@@ -267,7 +267,7 @@ for layer_spec in layer_config:
 
 print(len(x_train))
 
-for epoch in range(0, 4000):
+for epoch in range(0, 10):
 
     print("epoch #" + str(epoch))
     step_size *= step_size_scaling
@@ -297,13 +297,15 @@ for epoch in range(0, 4000):
 
             prev_activation = layer_activation
 
-        exit()
+#        exit()
 
         # Error at Output Layer
 
         loss_slope = (output_activation - output_exp) / output_activation.shape[0]
 
         # Back prop thru each layer
+
+        exit()
 
         for layer in reversed(layers):
 
