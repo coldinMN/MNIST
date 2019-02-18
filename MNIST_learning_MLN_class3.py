@@ -261,6 +261,8 @@ for layer_spec in layer_config:
     print(layer)
     input_size = layer.layer_size
 
+print(layers)
+
 #
 # begin training process
 #
@@ -297,7 +299,7 @@ for epoch in range(0, 10):
 
             prev_activation = layer_activation
 
-#        exit()
+
 
         # Error at Output Layer
 
@@ -317,16 +319,13 @@ for epoch in range(0, 10):
 
 
         error_hidden2, output_layer.weights, output_layer.bias = output_layer.backprop(
-            layer2_activation, loss_slope, output_layer.weights, output_layer.bias
-        )
+            layer2_activation, loss_slope, output_layer.weights, output_layer.bias)
 
         error_hidden1, layer2.weights, layer2.bias = layer2.backprop(
-            layer1_activation, error_hidden2, layer2.weights, layer2.bias
-        )
+            layer1_activation, error_hidden2, layer2.weights, layer2.bias)
 
         dummy_error, layer1.weights, layer1.bias = layer1.backprop(
-            x_train_batch, error_hidden1, layer1.weights, layer1.bias
-        )
+            x_train_batch, error_hidden1, layer1.weights, layer1.bias)
 
     #
     # Run Test Set to assess model
